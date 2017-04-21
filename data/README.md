@@ -1,0 +1,1 @@
+The purpouse of this directory is to gather crash data from various sources and to import it in a single database.
