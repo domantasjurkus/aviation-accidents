@@ -1,13 +1,9 @@
-##Aviation Accidents
+## Aviation Accidents  
 A project for analysing and visualising plane crashes recorded throughout the world.
 
-###TODO
+### TODO
 
-`1` Aggregate information from a number of online sources:
-
-- [US National Transportation Safety Board](https://www.ntsb.gov) - data parsed and stored in an SQLite database.
-- [Aviation Safety Network](https://aviation-safety.net/database/)
-- [Plane Crash Info](http://www.planecrashinfo.com/database.htm)
+`1` Aggregate information from a number of online sources (`data/`)
 
 `2` Write a backend for data requests
 
