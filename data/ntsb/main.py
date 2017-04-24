@@ -1,17 +1,17 @@
 import sqlite3
-import attributes
+import util
 # aviation_data.txt extracted from the US National Transportation Safety Board:
 # https://www.ntsb.gov/_layouts/ntsb.aviation/index.aspx
 
-def create_schema(conn, db_path):
+def create_schema(conn):
 	cursor = conn.cursor()
 	cursor.execute('DROP TABLE IF EXISTS ntsb;')
 
 	query = 'CREATE TABLE IF NOT EXISTS ntsb('
 
-	for e in attributes.attrs:
-		# Skip ignored attributes
-		if e['label'] in attributes.ignore:
+	for e in util.attrs:
+		# Skip ignored util
+		if e['label'] in util.ignore:
 			continue
 		query += e['label']+' '+e['sql_attr']
 	query = query[:-1]+')'
@@ -42,25 +42,25 @@ def insert_data(conn, file, truncate=False):
 		values = []
 
 		# Modify each field value according to set rules
-		for i in range(len(attributes.attrs)):
+		for i in range(len(util.attrs)):
 			entry = line[i]
-			# Ignore some attributes
-			if attributes.attrs[i]['label'] in attributes.ignore:
+			# Ignore some util
+			if util.attrs[i]['label'] in util.ignore:
 				continue
 			# Deal wth NULLs
-			if line[i] in attributes.null_values:
+			if line[i] in util.null_values:
 				values.append('NULL')
 				continue
 			# Insert quotes for varchars
-			if attributes.attrs[i]['sql_attr'][:7] == 'varchar':
-				entry = '"'+line[i]+'"'
-			# Insert quotes for dates which are expressed as TEXT
-			if attributes.attrs[i]['sql_attr'] == 'text,':
-				entry = '"'+line[i]+'"'
+			if util.attrs[i]['sql_attr'][:7] == 'varchar':
+				entry = '"%s"' % line[i]
+			# Insert date as YEAR/MONTH/DAY
+			if util.attrs[i]['label'] == 'date':
+				mdy = line[i].split('/')
+				entry = '"%s/%s/%s"' % (mdy[2], mdy[0], mdy[1])
 			values.append(entry)
 
-		query += '('+','.join(values)+')'
-		query += ','
+		query += '('+','.join(values)+'),'
 
 	cursor.execute(query[:-1])
 	conn.commit()
@@ -69,10 +69,9 @@ def insert_data(conn, file, truncate=False):
 # Parse the file and store the information in the project DB
 def main():
 	file = open('cleaned.txt')
-
 	conn = sqlite3.connect('../test.db')
 
-	create_schema(conn, '../test.db')
+	create_schema(conn)
 	insert_data(conn, file, True)
 
 	conn.close()
