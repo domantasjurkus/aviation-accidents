@@ -1,19 +1,12 @@
-The purpouse of this directory is to gather crash data from various sources and to import it in a single database.
+The purpouse of this directory is to gather crash info from various sources, importing all data into a single database.
+
+To create and populate `data.db` run `python main.py`.
 
 ### [US National Transportation Safety Board](https://www.ntsb.gov)
-Data parsed and stored in an SQLite database.
+Data importable via `ntsb/import.py`.
 
 ### [Aviation Safety Network](https://aviation-safety.net/database/)
 Sent an email for data access - waiting for reply.
 
 ### [Plane Crash Info](http://www.planecrashinfo.com/database.htm)
-Set up scrapping script.
-
-`*` Years scrapped: [1908, 1925]
-`*` Years remaining: [1926, 2017]
-
-`TODO`:
-
-- Check that repeating values are not inserted
-
-- consider saving output to auxilary CSV file in case the site starts blocking requests while older entries need to be re-scrapped.
+Website scrapped into CSV files in case future scrapping is needed and the site implements request blocking. Data importable via `pci/import.py`.
