@@ -3,7 +3,7 @@ A project for analysing and visualising plane crashes recorded throughout the wo
 
 [[|alt=splash here]]
 
-[splash]: https://github.com/domantasjurkus/aviation-accidents/tree/master/docs/splash.png "Splash here"
+![splash](https://github.com/domantasjurkus/aviation-accidents/tree/master/docs/splash.png "Splash here")
 
 ### TODO
 
