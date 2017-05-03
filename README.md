@@ -1,12 +1,12 @@
 ## Aviation Accidents  
 A project for analysing and visualising plane crashes recorded throughout the world.
 
+[[https://github.com/domantasjurkus/aviation-accidents/tree/master/docs/splash.png|alt=splash here]]
+
 ### TODO
 
-`1` Aggregate information from a number of online sources (`data/`)
+`*` Aggregate information from a number of online sources (`data/`)
 
-`2` Write a backend for data requests
+`*` Visualise data with D3.js or similar
 
-`3` Visualise data with D3.js
-
-`4` Consider applying data analysis to look for patterns
+`*` Applying data analysis to look for patterns
