@@ -1,8 +1,6 @@
 ## Aviation Accidents  
 A project for analysing and visualising plane crashes recorded throughout the world.
 
-[[|alt=splash here]]
-
 ![splash](https://raw.githubusercontent.com/domantasjurkus/aviation-accidents/master/docs/splash.png "Splash here")
 
 ### TODO
